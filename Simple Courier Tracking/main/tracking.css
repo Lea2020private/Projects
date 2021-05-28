@@ -1,0 +1,176 @@
+
+/*TRACK 3 CSS CODE FOR DESKTOP   */
+.progres_desk3 ul li{
+   display:inline-block;
+   width:220px;
+   text-align: center;
+   font-family: sans-serif;
+   color: #01ab07;
+   position:relative;
+}
+.progres_desk3 ul li .fa{
+    background-color: #ccc;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+}
+.progres_desk3 ul li .fa::after{
+    content:'';
+    background: #ccc;
+    height:5px;
+    width: 230px;
+    display: block;
+    position:absolute;
+    left:0;
+    top:20px;
+    z-index: -1;
+}
+
+.progres_desk3 ul li:nth-child(1) .fa, .progres_desk3 ul li:nth-child(2) .fa, .progres_desk3 ul li:nth-child(3) .fa{
+    background-color: rgb(0, 204, 255);
+}
+.progres_desk3 ul li:nth-child(1) .fa::after, .progres_desk3 ul li:nth-child(2) .fa::after, .progres_desk3 ul li:nth-child(3) .fa::after{
+   background-color:rgb(0, 204, 255);
+}
+
+.progres_desk3 ul li:first-child .fa::after{
+    width:115px;
+    left:110px;
+}
+.progres_desk3 ul li:last-child .fa::after{
+    width:115px;
+}
+ 
+/*TRACK 1 CSS CODE FOR DESKTOP   */
+.progres_desk1 ul li{
+    display:inline-block;
+    width:220px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #01ab07;
+    position:relative;
+ }
+ .progres_desk1 ul li .fa{
+     background-color: #ccc;
+     color: #fff;
+     padding: 10px;
+     border-radius: 50%;
+ }
+ .progres_desk1 ul li .fa::after{
+     content:'';
+     background: #ccc;
+     height:5px;
+     width: 230px;
+     display: block;
+     position:absolute;
+     left:0;
+     top:20px;
+     z-index: -1;
+ }
+ 
+ .progres_desk1 ul li:nth-child(1) .fa{
+     background-color: rgb(0, 204, 255);
+ }
+
+ .progres_desk1 ul li:nth-child(1) .fa::after{
+    background-color:rgb(0, 204, 255);
+ }
+ 
+ .progres_desk1 ul li:first-child .fa::after{
+     width:115px;
+     left:110px;
+ }
+ .progres_desk1 ul li:last-child .fa::after{
+     width:115px;
+ }
+
+
+ /*TRACK 2 CSS CODE FOR DESKTOP   */
+.progres_desk2 ul li{
+    display:inline-block;
+    width:220px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #01ab07;
+    position:relative;
+ }
+ .progres_desk2 ul li .fa{
+     background-color: #ccc;
+     color: #fff;
+     padding: 10px;
+     border-radius: 50%;
+ }
+ .progres_desk2 ul li .fa::after{
+     content:'';
+     background: #ccc;
+     height:5px;
+     width: 230px;
+     display: block;
+     position:absolute;
+     left:0;
+     top:20px;
+     z-index: -1;
+ }
+ 
+ .progres_desk2 ul li:nth-child(1) .fa,  .progres_desk2 ul li:nth-child(2) .fa{
+     background-color: rgb(0, 204, 255);
+ }
+ .progres_desk2 ul li:nth-child(1) .fa::after,  .progres_desk2 ul li:nth-child(2) .fa::after{
+    background-color:rgb(0, 204, 255);
+ }
+ 
+ .progres_desk2 ul li:first-child .fa::after{
+     width:115px;
+     left:110px;
+ }
+ .progres_desk2 ul li:last-child .fa::after{
+     width:115px;
+ }
+/*TRACK 4 CSS CODE FOR DESKTOP   */
+.progres_desk4 ul li{
+    display:inline-block;
+    width:220px;
+    text-align: center;
+    font-family: sans-serif;
+    color: #01ab07;
+    position:relative;
+ }
+ .progres_desk4 ul li .fa{
+     background-color: #ccc;
+     color: #fff;
+     padding: 10px;
+     border-radius: 50%;
+ }
+ .progres_desk4 ul li .fa::after{
+     content:'';
+     background: #ccc;
+     height:5px;
+     width: 230px;
+     display: block;
+     position:absolute;
+     left:0;
+     top:20px;
+     z-index: -1;
+ }
+ 
+ .progres_desk4 ul li:nth-child(1) .fa,.progres_desk4 ul li:nth-child(2) .fa,.progres_desk4 ul li:nth-child(3) .fa,.progres_desk4 ul li:nth-child(4) .fa{
+     background-color: rgb(0, 204, 255);
+ }
+ .progres_desk4 ul li:nth-child(1) .fa::after,.progres_desk4 ul li:nth-child(2) .fa::after,.progres_desk4 ul li:nth-child(3) .fa::after,.progres_desk4 ul li:nth-child(4) .fa::after{
+    background-color:rgb(0, 204, 255);
+ }
+ 
+ .progres_desk4 ul li:first-child .fa::after{
+     width:115px;
+     left:110px;
+ }
+ .progres_desk4 ul li:last-child .fa::after{
+     width:115px;
+ }
+/* TRACK CSS CODE FOR MOBILE */
+.progres_mob ul li .fa{
+    background-color: #ccc;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+}
