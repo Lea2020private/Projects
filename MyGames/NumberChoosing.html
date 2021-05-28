@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GAME</title>
+
+<link rel="stylesheet" href="">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ </head>
+<script>
+
+var pressedValue;
+
+document.addEventListener('keydown',GetPressedValue);
+
+      function GetPressedValue(e) {
+    	  pressedValue=String.fromCharCode(e.keyCode);   //pressed value is always ascii value so 
+	    }                                                //convert to nrml    
+	    
+
+
+  function StartGame(){
+    document.getElementById("start").style.display="none";
+    var score=0;
+    var chance=3;
+	var iterationCount=0;
+	var difficultLevel;
+	var showValue;
+
+	//call a run game function after 1.5sec
+	setTimeout(RunGame,1500);
+   
+	//execute a function in every 1.5 sec interval 
+	function RunGame(){
+     
+	  if( iterationCount==0){
+				document.getElementById("score").style.display="block";
+		    	$("#score").text("SCORE : "+score);
+		    	document.getElementById("life").style.display="block";
+		    	$("#chance").text(chance);
+				difficultLevel=setInterval(RunGame,1500);
+		    }		 
+           
+	          if(score>15 && score<30){
+				clearInterval(difficultLevel);
+				difficultLevel=setInterval(RunGame,1300);
+			   }else if(score>30 &&score<50){
+				clearInterval(difficultLevel);
+				difficultLevel=setInterval(RunGame,1100);
+			    }else{
+			    clearInterval(difficultLevel);
+				difficultLevel=setInterval(RunGame,1000);
+			    }		
+         
+          //logic for check pressed value and showing value are equal
+		   if(pressedValue!=undefined){
+			    if(showValue==pressedValue){
+			    	score++;
+			    } else{
+			    	chance=chance-1;
+			    }
+			  }
+			    
+			    if(pressedValue==undefined &&  iterationCount!=0){
+			    	chance=chance-1;
+			    }
+			    
+
+				if(chance==0){
+		           
+				   document.getElementById("score").style.display="none";
+				   document.getElementById("life").style.display="none";
+				   $("#values").text("YOUR FINAL SCORE IS "+score);
+				   document.getElementById("reload").style.display="block";
+				   clearInterval(difficultLevel);
+				   return;
+			   }
+			    
+			    showValue=Math.floor(Math.random() * 10);
+			    $("#values").text(showValue);
+			 
+				document.getElementById("score").style.display="block";
+		    	$("#score").text("SCORE : "+score);
+		    	document.getElementById("life").style.display="block";
+		    	$("#chance").text(chance);
+
+				iterationCount++;
+	}
+  }
+</script>
+
+<style>
+
+body {
+    color: #999;
+    background: #f5f5f5;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.login-form{
+    width: 500px;
+    height:500px;
+    margin:55px auto;
+    color: #434343;
+    background: #fff;
+    border: 2px solid #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    padding:5px;
+    text-align: center;
+}
+.login-form h4 {
+    text-align: center;
+    font-size: 25px;
+}
+h2{
+text-align: center;
+font-size: 45px;
+}
+
+</style>
+<body>
+<img src="t.jpg" style="width:100%;height:100px;">
+
+<div class="login-form">  
+  <h4>WELCOME TO THE GAME</h4>
+  <h2 id="values" style="height:300px;padding:100px;"></h2>
+  <button onclick="StartGame()"  id="start"  class="btn btn-primary">LETS START</button>
+  
+  <h3 id="score" style="background-color:orange;margin:auto 120px;padding:10px;color:white;display:none"></h3>
+  <h3 id="life" style="display:none"><i class="fa fa-heart" style="font-size:48px;color:red;">-<span id="chance" style="font-size:48px;color:black"></span></i></h3>
+  
+
+  
+  <button onclick="location.reload();"  id="reload" style="display:none;text-align:center;margin-left:180px" class="btn btn-primary">PLAY AGAIN</button>
+  
+  
+</div>
+
+
+</body>
+</html>       
+  
+  
+  
+  
+  
