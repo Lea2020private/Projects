@@ -93,6 +93,9 @@ var global = {
     turn: 'w',
     selectedpiece: '',
     highlighted: [],
+    recent_move_ids:[],
+    recent_move_icons:[],
+    recent_move_attr:[],
     pieces: {
       w_king: {
         position: '5_1',
@@ -388,7 +391,7 @@ var global = {
           break;
         
           case 'w_knight':
-            
+
             let w_knightmoves=[{ x: -1, y: 2 },{ x: 1, y: 2 },{ x: 1, y: -2 },{ x: -1, y: -2 },{ x: 2, y: 1 },{ x: 2, y: -1 },{ x: -2, y: -1 },{ x: -2, y: 1 }];
              for(let i=0;i<w_knightmoves.length;i++){
               allmove_options.push ((parseInt(position.x) + parseInt(w_knightmoves[i].x)) + '_' + (parseInt(position.y) + parseInt(w_knightmoves[i].y)));
@@ -415,6 +418,7 @@ var global = {
               return options;
             }
             global.variables.highlighted = options;
+            console.log(options);
             togglehighlight(options);
   
             break;
@@ -512,6 +516,7 @@ var global = {
               return options;
             }
             global.variables.highlighted = options;
+            console.log(options);
             togglehighlight(options);
             break;
 
@@ -652,10 +657,58 @@ var global = {
     }
 
 
+      //it is the function calculate moves for white rook, bishop and queen
+
+      function side_cross_options (position,possible_moves,my_icon,opponent_icon) {
+      
+        let flag = false;
+        let all_moves=possible_moves;
+        possible_moves=[];
+        
+        for(let i=0;i<all_moves.length;i++){
+         possible_moves.push ((parseInt(position.x) + parseInt(all_moves[i].x)) + '_' + (parseInt(position.y) + parseInt(all_moves[i].y)));
+        }
+        
+        all_moves=possible_moves;
+        possible_moves=[];
+         
+        let position_1,position_2;
+        for(let i=0;i<all_moves.length;i++){
+         position_1=parseInt(all_moves[i].split('_')[0]);
+         position_2=parseInt(all_moves[i].split('_')[1]);
+         if(!(position_1< 1) && !(position_1 > 8) && !(position_2 < 1) && !(position_2 > 8)){
+            possible_moves.push(all_moves[i]);
+         }
+        }
+        
+        all_moves=possible_moves;
+        possible_moves=[];
+        
+        for(let i=0;i<all_moves.length;i++){
+           
+          if (flag == false){
+           if ($('#' + all_moves[i]).attr('chess') == 'null'){
+             possible_moves.push(all_moves[i]);
+           } else if (($('#' + all_moves[i]).attr('chess')).slice(0,1) == opponent_icon) {
+             flag = true;
+             possible_moves.push(all_moves[i]);
+           } else if (($('#' + all_moves[i]).attr('chess')).slice(0,1) == my_icon) {
+             flag = true;
+           }
+         }
+        }
+     
+        return possible_moves;
+          
+        }
+
+
      //it is the function for move the icon
     function move(target) {
 
       let selectedpiece = $('#' + global.variables.selectedpiece).attr('chess');     //get the name of selected piece
+      let targetpiece= $('#' + target.id).attr('chess');
+
 
       let icon = $('#' + global.variables.selectedpiece).html();
       let target_icon=$('#' + target.id).html();
@@ -668,6 +721,11 @@ var global = {
       $('#' + global.variables.selectedpiece).attr('chess','null');
       global.variables.pieces[selectedpiece].position = target.id;
       global.variables.pieces[selectedpiece].moved = true;    
+
+      //insert all values in recent array before move 
+     global.variables.recent_move_ids.push(global.variables.selectedpiece,target.id);
+     global.variables.recent_move_icons.push(icon,target_icon);
+     global.variables.recent_move_attr.push(selectedpiece,targetpiece);
     }
 
     
@@ -724,4 +782,61 @@ var global = {
       $('#' + options[i]).toggleClass("green"); 
     }
 
+    }
+
+
+       //it is the function for undo operation
+       function undo(){
+        //alert( global.variables.recent_move_attr +"\n"+ global.variables.recent_move_ids);
+       
+        if(global.variables.recent_move_attr.length!=0){
+  
+        togglehighlight(global.variables.highlighted);     //toggle the alredy highlighted options and make empty
+    
+        recent_move_attr2=global.variables.recent_move_attr.pop();
+        recent_move_attr1=global.variables.recent_move_attr.pop();
+  
+        recent_move_icon2=global.variables.recent_move_icons.pop();
+        recent_move_icon1=global.variables.recent_move_icons.pop();
+        
+        recent_move_id2=global.variables.recent_move_ids.pop();
+        recent_move_id1=global.variables.recent_move_ids.pop();
+  
+        let start_id=[];
+        let end_id=[];
+  
+        $("#"+recent_move_id1).html(recent_move_icon1);
+        $("#"+recent_move_id2).html(recent_move_icon2);
+  
+        $("#"+recent_move_id1).attr('chess',recent_move_attr1);
+        $("#"+recent_move_id2).attr('chess',recent_move_attr2);
+  
+        if(recent_move_attr1!='null'){
+         global.variables.pieces[recent_move_attr1].position =recent_move_id1;
+         }
+        if(recent_move_attr2!='null'){
+          global.variables.pieces[recent_move_attr2].position =recent_move_id2;
+          }
+  
+             //check if a undo operation on first pawn move
+       if(global.variables.pieces[recent_move_attr1].type=='w_pawn'){
+             
+        start_id=recent_move_id1.split('_');
+  
+        if(start_id[1]=='2'){
+          global.variables.pieces[recent_move_attr1].moved = false;
+        }
+      }else if(global.variables.pieces[recent_move_attr1].type=='b_pawn'){
+         
+      start_id=recent_move_id1.split('_');
+  
+      if(start_id[1]=='7'){
+        global.variables.pieces[recent_move_attr1].moved = false;
+       }
+      }
+  
+        global.variables.highlighted=[];
+        endturn();
+        }
+      
     }
