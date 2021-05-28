@@ -96,6 +96,8 @@ var global = {
     recent_move_ids:[],
     recent_move_icons:[],
     recent_move_attr:[],
+    w_captured_iteration:1,
+    b_captured_iteration:1,
     pieces: {
       w_king: {
         position: '5_1',
@@ -423,6 +425,44 @@ var global = {
   
             break;
 
+            case 'w_rook':
+
+              move1 = side_cross_options(position,[{x: 1, y: 0},{x: 2, y: 0},{x: 3, y: 0},{x: 4, y: 0},{x: 5, y: 0},{x: 6, y: 0},{x: 7, y: 0}],'w','b');
+              move2 = side_cross_options(position,[{x: 0, y: 1},{x: 0, y: 2},{x: 0, y: 3},{x: 0, y: 4},{x: 0, y: 5},{x: 0, y: 6},{x: 0, y: 7}],'w','b');
+              move3 = side_cross_options(position,[{x: -1, y: 0},{x: -2, y: 0},{x: -3, y: 0},{x: -4, y: 0},{x: -5, y: 0},{x: -6, y: 0},{x: -7, y: 0}],'w','b');
+              move4 = side_cross_options(position,[{x: 0, y: -1},{x: 0, y: -2},{x: 0, y: -3},{x: 0, y: -4},{x: 0, y: -5},{x: 0, y: -6},{x: 0, y: -7}],'w','b');
+    
+              options = move1.concat(move2).concat(move3).concat(move4);
+              if(forCheck==true){
+                return options;
+              }
+              global.variables.highlighted = options;
+              console.log(options);
+              togglehighlight(options);
+              
+              break;
+
+             case 'w_queen':
+
+                move1 = side_cross_options(position,[{x: 1, y: 1},{x: 2, y: 2},{x: 3, y: 3},{x: 4, y: 4},{x: 5, y: 5},{x: 6, y: 6},{x: 7, y: 7}],'w','b');
+                move2 = side_cross_options(position,[{x: 1, y: -1},{x: 2, y: -2},{x: 3, y: -3},{x: 4, y: -4},{x: 5, y: -5},{x: 6, y: -6},{x: 7, y: -7}],'w','b');
+                move3 = side_cross_options(position,[{x: -1, y: 1},{x: -2, y: 2},{x: -3, y: 3},{x: -4, y: 4},{x: -5, y: 5},{x: -6, y: 6},{x: -7, y: 7}],'w','b');
+                move4 = side_cross_options(position,[{x: -1, y: -1},{x: -2, y: -2},{x: -3, y: -3},{x: -4, y: -4},{x: -5, y: -5},{x: -6, y: -6},{x: -7, y: -7}],'w','b');
+                move5 = side_cross_options(position,[{x: 1, y: 0},{x: 2, y: 0},{x: 3, y: 0},{x: 4, y: 0},{x: 5, y: 0},{x: 6, y: 0},{x: 7, y: 0}],'w','b');
+                move6 = side_cross_options(position,[{x: 0, y: 1},{x: 0, y: 2},{x: 0, y: 3},{x: 0, y: 4},{x: 0, y: 5},{x: 0, y: 6},{x: 0, y: 7}],'w','b');
+                move7 = side_cross_options(position,[{x: -1, y: 0},{x: -2, y: 0},{x: -3, y: 0},{x: -4, y: 0},{x: -5, y: 0},{x: -6, y: 0},{x: -7, y: 0}],'w','b');
+                move8 = side_cross_options(position,[{x: 0, y: -1},{x: 0, y: -2},{x: 0, y: -3},{x: 0, y: -4},{x: 0, y: -5},{x: 0, y: -6},{x: 0, y: -7}],'w','b');
+      
+                options = move1.concat(move2).concat(move3).concat(move4).concat(move5).concat(move6).concat(move7).concat(move8);
+                if(forCheck==true){
+                  return options;
+                }
+                global.variables.highlighted = options;
+                console.log(options);
+                togglehighlight(options);
+      
+                break;   
+
       }
     }
 
@@ -519,6 +559,44 @@ var global = {
             console.log(options);
             togglehighlight(options);
             break;
+
+            case 'b_rook':
+        
+             move1 = side_cross_options(position,[{x: 1, y: 0},{x: 2, y: 0},{x: 3, y: 0},{x: 4, y: 0},{x: 5, y: 0},{x: 6, y: 0},{x: 7, y: 0}],'b','w');
+             move2 = side_cross_options(position,[{x: 0, y: 1},{x: 0, y: 2},{x: 0, y: 3},{x: 0, y: 4},{x: 0, y: 5},{x: 0, y: 6},{x: 0, y: 7}],'b','w');
+             move3 = side_cross_options(position,[{x: -1, y: 0},{x: -2, y: 0},{x: -3, y: 0},{x: -4, y: 0},{x: -5, y: 0},{x: -6, y: 0},{x: -7, y: 0}],'b','w');
+             move4 = side_cross_options(position,[{x: 0, y: -1},{x: 0, y: -2},{x: 0, y: -3},{x: 0, y: -4},{x: 0, y: -5},{x: 0, y: -6},{x: 0, y: -7}],'b','w');
+    
+              options = move1.concat(move2).concat(move3).concat(move4);
+              if(forCheck==true){
+                return options;
+              }
+              global.variables.highlighted = options;
+              console.log(options);
+              togglehighlight(options);
+              
+              break;
+      
+           case 'b_queen':
+          
+            move1 = side_cross_options(position,[{x: 1, y: 1},{x: 2, y: 2},{x: 3, y: 3},{x: 4, y: 4},{x: 5, y: 5},{x: 6, y: 6},{x: 7, y: 7}],'b','w');
+            move2 = side_cross_options(position,[{x: 1, y: -1},{x: 2, y: -2},{x: 3, y: -3},{x: 4, y: -4},{x: 5, y: -5},{x: 6, y: -6},{x: 7, y: -7}],'b','w');
+            move3 = side_cross_options(position,[{x: -1, y: 1},{x: -2, y: 2},{x: -3, y: 3},{x: -4, y: 4},{x: -5, y: 5},{x: -6, y: 6},{x: -7, y: 7}],'b','w');
+            move4 = side_cross_options(position,[{x: -1, y: -1},{x: -2, y: -2},{x: -3, y: -3},{x: -4, y: -4},{x: -5, y: -5},{x: -6, y: -6},{x: -7, y: -7}],'b','w');
+            move5 = side_cross_options(position,[{x: 1, y: 0},{x: 2, y: 0},{x: 3, y: 0},{x: 4, y: 0},{x: 5, y: 0},{x: 6, y: 0},{x: 7, y: 0}],'b','w');
+            move6 = side_cross_options(position,[{x: 0, y: 1},{x: 0, y: 2},{x: 0, y: 3},{x: 0, y: 4},{x: 0, y: 5},{x: 0, y: 6},{x: 0, y: 7}],'b','w');
+            move7 = side_cross_options(position,[{x: -1, y: 0},{x: -2, y: 0},{x: -3, y: 0},{x: -4, y: 0},{x: -5, y: 0},{x: -6, y: 0},{x: -7, y: 0}],'b','w');
+            move8 = side_cross_options(position,[{x: 0, y: -1},{x: 0, y: -2},{x: 0, y: -3},{x: 0, y: -4},{x: 0, y: -5},{x: 0, y: -6},{x: 0, y: -7}],'b','w');
+      
+                options = move1.concat(move2).concat(move3).concat(move4).concat(move5).concat(move6).concat(move7).concat(move8);
+                if(forCheck==true){
+                  return options;
+                }
+              global.variables.highlighted = options;
+              console.log(options);
+              togglehighlight(options);
+       
+             break;
 
       }
     }
@@ -732,9 +810,19 @@ var global = {
      //it is the function for capture the icon
     function capture (target) {
       
-          move(target);
-         // captured piece
-         global.variables.pieces[target.name].captured = true;
+       // captured piece
+      let target_icon=$('#' + target.id).html();
+      move(target);
+     
+     global.variables.pieces[target.name].captured = true;
+     if(global.variables.pieces[target.name].type.slice(0,1)=='w'){
+             $("#w_captured_piece"+global.variables.w_captured_iteration).html(target_icon);
+             global.variables.w_captured_iteration++;
+         }else if(global.variables.pieces[target.name].type.slice(0,1)=='b'){
+          $("#b_captured_piece"+global.variables.b_captured_iteration).html(target_icon);
+          global.variables.b_captured_iteration++;
+        }
+
        
      }
 
@@ -834,7 +922,32 @@ var global = {
         global.variables.pieces[recent_move_attr1].moved = false;
        }
       }
-  
+
+      //write a code of undo for captured icons
+ 
+    if(recent_move_attr2!='null'){
+      if(global.variables.pieces[recent_move_attr1].type.slice(0,1)=='w'){
+
+        if(global.variables.pieces[recent_move_attr2].captured==true){
+
+          global.variables.b_captured_iteration--;
+          $("#b_captured_piece"+global.variables.b_captured_iteration).html('');   
+          global.variables.pieces[recent_move_attr2].captured=false;
+        }
+      
+      }else if(global.variables.pieces[recent_move_attr1].type.slice(0,1)=='b'){
+
+        if(global.variables.pieces[recent_move_attr2].captured==true){
+
+          global.variables.w_captured_iteration--;
+          $("#w_captured_piece"+global.variables.w_captured_iteration).html('');   
+          global.variables.pieces[recent_move_attr2].captured=false;
+          
+        }
+
+      }
+
+    }
         global.variables.highlighted=[];
         endturn();
         }
