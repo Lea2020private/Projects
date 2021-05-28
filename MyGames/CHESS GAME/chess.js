@@ -388,7 +388,7 @@ var global = {
           break;
         
           case 'w_knight':
-
+            
             let w_knightmoves=[{ x: -1, y: 2 },{ x: 1, y: 2 },{ x: 1, y: -2 },{ x: -1, y: -2 },{ x: 2, y: 1 },{ x: 2, y: -1 },{ x: -2, y: -1 },{ x: -2, y: 1 }];
              for(let i=0;i<w_knightmoves.length;i++){
               allmove_options.push ((parseInt(position.x) + parseInt(w_knightmoves[i].x)) + '_' + (parseInt(position.y) + parseInt(w_knightmoves[i].y)));
