@@ -667,7 +667,11 @@ var global = {
                 }  
   
             }else{
-                if ($('#' + allmoves[i]).attr('chess') == 'null'){
+
+               if($('#' + allmoves[i]).attr('chess') != 'null'){
+                      break;             //if this is the pawns first move, and there is a piece in front ;
+               }
+               else if ($('#' + allmoves[i]).attr('chess') == 'null'){
 
                   possible_moves.push(allmoves[i]);     // otherwise return the move if there is no chess piece on it;
 
@@ -695,7 +699,11 @@ var global = {
               }  
 
           }else{
-              if ($('#' + allmoves[i]).attr('chess') == 'null'){
+
+            if($('#' + allmoves[i]).attr('chess') != 'null'){
+              break;             //if this is the pawns first move, and there is a piece in front ;
+           }
+          else if ($('#' + allmoves[i]).attr('chess') == 'null'){
 
                 possible_moves.push(allmoves[i]);     // otherwise return the move if there is no chess piece on it;
 
