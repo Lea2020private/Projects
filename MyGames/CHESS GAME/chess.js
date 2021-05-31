@@ -1,7 +1,5 @@
 //this is where program execution starts
 $(document).ready(function() {
-
-
    
   gamesetup();
 
@@ -24,7 +22,12 @@ $(document).ready(function() {
     };
 
 
-   if(global.variables.check==true && selectedpiece.name.slice(0,1) == global.variables.turn){
+   if(global.variables.game_end==true){
+  
+    location.reload();
+
+   }
+   else if(global.variables.check==true && selectedpiece.name.slice(0,1) == global.variables.turn){
 
     if(selectedpiece.name.slice(0,1)=='w'){
       $(".player1").html("YOUR KING IS ON CHECK");
@@ -99,6 +102,16 @@ $(document).ready(function() {
 });
 
 
+
+function FinishGame(){
+
+ 
+    if(global.variables.game_end==true){
+  
+      location.reload();
+    }
+
+}
 
 //create a gloabal variable for updation
 var global = {
